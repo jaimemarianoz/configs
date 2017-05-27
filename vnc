@@ -1,0 +1,22 @@
+Install and Configure VNCServer RHEL 7
+######################################
+[root@nova01 ~]# yum install tigervnc-server
+[root@nova01 ~]# cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+[root@nova01 ~]# /etc/systemd/system/vncserver@.service  < Para Root cambiar el /home/user por /root
+[root@nova01 ~]# systemctl daemon-reload 
+[root@nova01 ~]# vncpasswd 
+[root@nova01 ~]# systemctl start vncserver@:1.service < Aqui se le indica el numero este asocia al archivo de configuracion principal y abre la conexion.
+
+Para Usuarios
+#############
+
+[root@nova01 ~]# useradd jaime
+[root@nova01 ~]# usermod -a -G wheel jaime
+[root@nova01 ~]# id jaime
+[root@nova01 ~]# passwd jaime
+[root@nova01 ~]# /etc/systemd/system/vncserver@.service /etc/systemd/system/vncserver-jaime@.service 
+[root@nova01 ~]# vi /etc/systemd/system/vncserver-jaime@.service < Ingresar datos de usuario <USER>
+[root@nova01 ~]# systemctl daemon-reload 
+[root@nova01 ~]# su - jaime
+[root@nova01 ~]# vncpasswd
+[root@nova01 ~]# systemctl start vncserver-jaime@:2.service

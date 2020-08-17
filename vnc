@@ -20,5 +20,3 @@ Para Usuarios
 [root@nova01 ~]# su - jaime
 [root@nova01 ~]# vncpasswd
 [root@nova01 ~]# systemctl start vncserver-jaime@:2.service
-
-date 17-08-20
